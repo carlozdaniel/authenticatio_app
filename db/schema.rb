@@ -10,68 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_29_190838) do
+ActiveRecord::Schema.define(version: 2021_07_11_080527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.text "address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "desarrollos", force: :cascade do |t|
-    t.string "politicas"
-    t.string "entornos"
-    t.string "funcionalidad"
-    t.string "aceptacion"
-    t.bigint "empresa_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["empresa_id"], name: "index_desarrollos_on_empresa_id"
-  end
-
-  create_table "empresas", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.string "name"
-    t.string "photo_url"
-    t.string "status"
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "politicas", force: :cascade do |t|
-    t.string "conunto_politicas"
-    t.string "revision_politica"
-    t.bigint "empresa_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["empresa_id"], name: "index_politicas_on_empresa_id"
-  end
-
-  create_table "teles", force: :cascade do |t|
-    t.string "controles_red"
-    t.string "mecanismo_seg"
-    t.string "segregacion_redes"
-    t.string "procedimientos"
-    t.string "intercambio"
-    t.string "mensajeria"
-    t.string "confidencialidad"
-    t.bigint "empresa_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["empresa_id"], name: "index_teles_on_empresa_id"
-  end
-
-  add_foreign_key "desarrollos", "empresas"
-  add_foreign_key "politicas", "empresas"
-  add_foreign_key "teles", "empresas"
 end
